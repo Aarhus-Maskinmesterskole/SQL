@@ -1,0 +1,27 @@
+# 09 - Mini-projekt - Kommandoer
+
+-- Sådan indlæser du setup.sql
+-- cd sql-workshops/09_project-template
+sqlite3 bibliotek.db < setup.sql
+
+-- Vis alle bøger
+SELECT * FROM book;
+
+-- Vis alle forfattere
+SELECT * FROM author;
+
+-- Vis alle udlån
+SELECT * FROM loan;
+
+-- Udvidet: Vis hvem der har lånt hvilken bog
+SELECT l.loan_date, l.borrower_name, b.title, a.name AS author
+FROM loan l
+JOIN book b ON l.book_id = b.id
+JOIN author a ON b.author_id = a.id;
+
+-- Antal udlån per forfatter
+SELECT a.name AS forfatter, COUNT(*) AS antal_udlån
+FROM loan l
+JOIN book b ON l.book_id = b.id
+JOIN author a ON b.author_id = a.id
+GROUP BY a.name;

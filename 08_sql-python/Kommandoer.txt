@@ -1,0 +1,23 @@
+# 08 - SQL og Python - Kommandoer
+
+-- Sådan indlæser du setup.sql i SQLite (CLI)
+sqlite3 data.db < setup.sql
+
+-- Alternativt via Python:
+with open("setup.sql") as f:
+    cursor.executescript(f.read())
+
+-- Hent alle elever
+SELECT * FROM students;
+
+-- Filtrér elever over 21 år
+SELECT * FROM students WHERE age > 21;
+
+-- Indsæt ny elev
+INSERT INTO students VALUES (3, 'Sofie', 22);
+
+-- Slet elev
+DELETE FROM students WHERE name = 'Anna';
+
+-- Opdater alder
+UPDATE students SET age = 25 WHERE name = 'Mikkel';

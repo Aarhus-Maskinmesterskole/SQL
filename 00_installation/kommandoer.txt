@@ -1,0 +1,20 @@
+# 01 - SELECT Basics - Kommandoer
+
+-- Vælg alle kolonner fra tabellen
+SELECT * FROM students;
+
+-- Vælg specifikke kolonner
+SELECT name, grade FROM students;
+
+-- Filtrér med WHERE
+SELECT * FROM students WHERE age > 21;
+
+-- Sortér resultater
+SELECT name, grade FROM students WHERE grade > 7 ORDER BY name;
+
+-- Begræns antallet af rækker
+-- MySQL/MariaDB:
+SELECT name, grade FROM students ORDER BY grade DESC LIMIT 3;
+
+-- SQL Server:
+SELECT TOP 3 name, grade FROM students ORDER BY grade DESC;

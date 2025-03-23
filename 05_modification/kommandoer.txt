@@ -1,0 +1,28 @@
+# 05 - Dataændringer og Transaktioner - Kommandoer
+
+-- Sådan indlæser du setup.sql til databasen:
+-- cd sql-workshops/05_modification
+mysql -h 127.0.0.1 -P 3306 -u root -p workshop < setup.sql
+
+-- Indsæt en ny elev
+INSERT INTO students (id, name, age)
+VALUES (4, 'Lukas', 23);
+
+-- Opdatér en elevs alder
+UPDATE students
+SET age = 25
+WHERE name = 'Mikkel';
+
+-- Slet en elev
+DELETE FROM students
+WHERE name = 'Anna';
+
+-- Transaktion: ROLLBACK eksempel
+START TRANSACTION;
+UPDATE students SET age = 99 WHERE name = 'Sofie';
+ROLLBACK;
+
+-- Transaktion: COMMIT eksempel
+START TRANSACTION;
+UPDATE students SET age = 23 WHERE name = 'Sofie';
+COMMIT;

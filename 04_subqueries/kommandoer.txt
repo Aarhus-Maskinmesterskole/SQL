@@ -1,0 +1,41 @@
+# 04 - Subqueries og Views - Kommandoer
+
+-- Sådan indlæser du setup.sql til databasen:
+-- cd sql-workshops/04_subqueries
+mysql -h 127.0.0.1 -P 3306 -u root -p workshop < setup.sql
+
+-- Find navne på elever tilmeldt 'SQL'
+SELECT name
+FROM students
+WHERE id IN (
+  SELECT student_id
+  FROM enrollments
+  WHERE course = 'SQL'
+);
+
+-- Find elever UDEN nogen tilmeldinger
+SELECT name
+FROM students s
+WHERE NOT EXISTS (
+  SELECT *
+  FROM enrollments e
+  WHERE s.id = e.student_id
+);
+
+-- Gennemsnitsalder for elever på 'Fall'-kurser
+SELECT AVG(age) AS gennemsnitsalder
+FROM students
+WHERE id IN (
+  SELECT student_id
+  FROM enrollments
+  WHERE semester = 'Fall'
+);
+
+-- Opret og brug et view
+CREATE OR REPLACE VIEW sql_kurser AS
+SELECT s.name, e.course, e.semester
+FROM students s
+JOIN enrollments e ON s.id = e.student_id
+WHERE e.course = 'SQL';
+
+SELECT * FROM sql_kurser;

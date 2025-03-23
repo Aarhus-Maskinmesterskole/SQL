@@ -1,0 +1,17 @@
+# 03 - Aggregation - Kommandoer
+
+-- Antal tilmeldinger pr. kursus
+SELECT course, COUNT(*) AS antal_tilmeldinger
+FROM enrollments
+GROUP BY course;
+
+-- Antal unikke elever pr. semester
+SELECT semester, COUNT(DISTINCT student_id) AS unikke_elever
+FROM enrollments
+GROUP BY semester;
+
+-- Vis kun kurser med mere end 1 tilmelding
+SELECT course, COUNT(*) AS antal
+FROM enrollments
+GROUP BY course
+HAVING COUNT(*) > 1;

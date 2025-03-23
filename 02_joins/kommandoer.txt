@@ -1,0 +1,32 @@
+# 02 - JOINs - Kommandoer
+
+-- Sådan indlæser du setup.sql til databasen:
+-- Åbn terminal og navigér til mappen hvor filen ligger, fx:
+-- cd sql-workshops/02_joins
+
+-- Kør denne kommando for at køre filen i MariaDB:
+-- (forudsætter at databasen 'workshop' eksisterer og MariaDB kører)
+
+-- Terminal (bash):
+mysql -h 127.0.0.1 -P 3306 -u root -p workshop < setup.sql
+
+-- Hent elevnavn og kursusnavn (kun de med tilmelding)
+SELECT s.name, e.course
+FROM students s
+INNER JOIN enrollments e ON s.id = e.student_id;
+
+-- Hent ALLE elever og deres kurser (også NULL hvis ingen)
+SELECT s.name, e.course
+FROM students s
+LEFT JOIN enrollments e ON s.id = e.student_id;
+
+-- Find elever UDEN nogen tilmelding
+SELECT s.name
+FROM students s
+LEFT JOIN enrollments e ON s.id = e.student_id
+WHERE e.course IS NULL;
+
+-- (Ekstra) Hent alle tilmeldinger, også hvis eleven ikke findes (teoretisk)
+SELECT s.name, e.course
+FROM students s
+RIGHT JOIN enrollments e ON s.id = e.student_id;
