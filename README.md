@@ -19,7 +19,7 @@ Dette er ideelt til undervisning, selvstudie eller opkvalificering inden for SQL
 
 | Mappe | Indhold |
 |-------|---------|
-| `00_installation`             |                         |
+| `00_installation`             | Installationer          |
 | `01_select-basics/`           | SELECT, WHERE, ORDER BY |
 | `02_joins/`                   | INNER, LEFT, RIGHT JOINS |
 | `03_aggregation/`             | GROUP BY, COUNT, SUM, HAVING |
